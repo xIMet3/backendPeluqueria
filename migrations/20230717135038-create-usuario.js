@@ -25,14 +25,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       rol_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Rols",
+          key: "id",
+        },
       },
       codigo_postal: {
         type: Sequelize.INTEGER
       },
-      estado: {
-        type: Sequelize.BOOLEAN
-      },
+      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

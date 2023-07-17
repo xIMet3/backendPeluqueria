@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Cita', {
+    await queryInterface.createTable('Citas', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,22 +10,37 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       usuario_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Usuarios",
+          key: "id",
+        },
+
       },
       peluquero_id: {
         type: Sequelize.INTEGER
       },
       fecha: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        unique: true,
+        required: true
       },
       comentario: {
         type: Sequelize.STRING
       },
       servicio_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Servicios",
+          key: "id",
+        },
       },
       estado_cita: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        // references: {
+        //   model: "Cita_estados",
+        //   key: "id",
+        // },
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +53,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Cita');
+    await queryInterface.dropTable('Citas');
   }
 };
