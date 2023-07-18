@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "servicio_id",
         as: "servicio",
       });
+
+      Cita.belongsTo(models.Cita_estado, {
+        foreignKey: "estado_cita",
+        as: "estado_cita",
+      });
     }
   }
   Cita.init({

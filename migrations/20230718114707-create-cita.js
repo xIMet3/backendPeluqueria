@@ -36,11 +36,11 @@ module.exports = {
         },
       },
       estado_cita: {
-        type: Sequelize.STRING,
-        // references: {
-        //   model: "Cita_estados",
-        //   key: "id",
-        // },
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Cita_estados",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,

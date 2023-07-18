@@ -2,26 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Empleados', {
+    await queryInterface.createTable('Cita_estados', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      usuario_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Usuarios",
-          key: "id",
-          where: {
-            role_id: 2,
-          },
-        },
-
+      concertada: {
+        type: Sequelize.STRING
       },
-      estado: {
-        type: Sequelize.BOOLEAN
+      anulada: {
+        type: Sequelize.STRING
+      },
+      realizada: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Empleados');
+    await queryInterface.dropTable('Cita_estados');
   }
 };
