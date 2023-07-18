@@ -16,13 +16,16 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
+        required: true
       },
       contraseña: {
         type: Sequelize.STRING
       },
       telefono: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        unique: true
       },
       rol_id: {
         type: Sequelize.INTEGER,
@@ -34,15 +37,6 @@ module.exports = {
       codigo_postal: {
         type: Sequelize.INTEGER
       },
-      
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
   async down(queryInterface, Sequelize) {
