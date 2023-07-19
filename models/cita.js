@@ -5,19 +5,19 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Cita extends Model {
     
-    // static associate(models) {
-    //   Cita.belongsTo(models.Usuario, {
-    //     foreignKey: "usuario_id"
-    //   });
+    static associate(models) {
+      Cita.belongsTo(models.Usuario, {
+        foreignKey: "usuario_id"
+      });
 
-    //   Cita.belongsTo(models.Servicio, {
-    //     foreignKey: "servicio_id"
-    //   });
+      Cita.belongsTo(models.Servicio, {
+        foreignKey: "servicio_id"
+      });
 
-    //   Cita.belongsTo(models.Cita_estado, {
-    //     foreignKey: "estado_cita"
-    //   });
-    // }
+      Cita.belongsTo(models.Cita_estado, {
+        foreignKey: "estado_cita"
+      });
+    }
   }
   Cita.init({
     usuario_id: DataTypes.INTEGER,

@@ -82,5 +82,4 @@ usuarioController.updatePerfil = async (req, res) => {
     });
   }
 };
-
 module.exports = usuarioController;

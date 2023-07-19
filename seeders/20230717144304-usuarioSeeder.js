@@ -15,6 +15,17 @@ module.exports = {
         rol_id: 1,
         codigo_postal: 46900
       },
+
+      {
+        id: 2,
+        nombre: "Cristian",
+        apellido: "Johnson",
+        email: "johnson@mail.com",
+        contraseña: bcrypt.hashSync("admin123", 6),
+        telefono: "677665556",
+        rol_id: 2,
+        codigo_postal: 46900
+      }
     ],{}
     );
   },
