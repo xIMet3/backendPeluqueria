@@ -16,14 +16,14 @@ const auth = (req, res, next) => {
       // Verifica y decodifica el token utilizando jwt
       const decoded = jwt.verify(token, "misterio");
       // Almacena los datos del usuario extraidos del token
-      req.usuario_id = decoded.usuario_id;
-      req.rol_id = decoded.rol_id;
+      req.usuarioId = decoded.usuarioId;
+      req.rolId = decoded.rolId;
   
       next();
     } catch (error) {
       return res.status(401).json({
         success: false,
-        message: "Invalid token",
+        message: "Token inválido",
         error: error,
       });
     }

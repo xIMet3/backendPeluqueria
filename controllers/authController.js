@@ -75,8 +75,8 @@ authController.loginUsuario = async (req, res) => {
     // Genera un token JWT
     const token =jwt.sign(
       {
-        usuario_id: usuario.id,
-        rol_id: usuario.rol_id,
+        usuarioId: usuario.id,
+        rolId: usuario.rol_id,
         email: usuario.email
       },
       "misterio",
@@ -95,15 +95,5 @@ authController.loginUsuario = async (req, res) => {
       error: error.message
     });
   }
-
-
-
 }
-
-
-
-
-
-
-
 module.exports = authController;

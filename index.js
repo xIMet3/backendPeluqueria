@@ -6,6 +6,7 @@ const auth = require("./middleware/verifyToken");
 const isAdmin = require("./middleware/isAdmin");
 const isDoctor = require("./middleware/isDoctor");
 const authController = require("./controllers/authController");
+const usuarioController = require("./controllers/usuarioController");
 
 
 const PORT = 3000;
@@ -25,6 +26,11 @@ app.post("/registro", authController.registerUsuario);
 
 // Login usuario
 app.post("/login", authController.loginUsuario);
+
+// Buscar perfil de usuario
+app.get("/perfilUsuario", auth, usuarioController.getPerfil);
+
+
 
 
 
