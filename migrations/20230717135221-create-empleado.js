@@ -14,9 +14,9 @@ module.exports = {
         references: {
           model: "Usuarios",
           key: "id",
-          where: {
-            role_id: 2,
-          },
+          // where: {
+          //   role_id: 2,
+          // },
         },
 
       },

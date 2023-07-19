@@ -1,4 +1,4 @@
-const { Cita } = require("../models/");
+const { Cita } = require("../models");
 
 const citaController = {};
 
@@ -8,6 +8,7 @@ citaController.pedirCita = async (req, res) => {
     const { empleado_id, fecha, servicio_id, comentario } = req.body;
     const { usuarioId: usuario_id } = req;
     const { rolId, usuarioId } = req;
+    
 
     if (rolId === 3 && usuario_id != usuarioId) {
       return res.json({

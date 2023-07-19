@@ -21,7 +21,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: "Empleados",
-          key: "id"
+          key: "id",
+          // where: {
+          //   role_id: 2,
+          // },
         }
       },
       fecha: {
