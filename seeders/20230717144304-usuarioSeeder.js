@@ -25,7 +25,19 @@ module.exports = {
         telefono: "677665556",
         rol_id: 2,
         codigo_postal: 46900
+      },
+
+      {
+        id: 3,
+        nombre: "Eric",
+        apellido: "Garcia",
+        email: "eric@mail.com",
+        contraseña: bcrypt.hashSync("admin123", 6),
+        telefono: "722657882",
+        rol_id: 3,
+        codigo_postal: 46900
       }
+      
     ],{}
     );
   },
