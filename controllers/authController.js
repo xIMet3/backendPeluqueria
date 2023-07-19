@@ -46,4 +46,64 @@ authController.registerUsuario = async (req, res) => {
     });
   }
 };
+// Login de usuario
+authController.loginUsuario = async (req, res) => {
+  const email = req.body.email;
+  const contraseña = req.body.contraseña;
+
+  try {
+    const usuario = await Usuario.findOne({
+      where: {
+        email: email,
+      },
+    });
+
+    if(!usuario) {
+      return res.status(401).json({
+        error: "Correo electrónico o contraseña no válidos1",
+      });
+    }
+    // Compara la contraseña introducida con la contraseña del usuario al que quiere acceder
+    const contraseñaValida = bcrypt.compareSync(contraseña, usuario.contraseña);
+
+    if (!contraseñaValida){
+      return res.status(401).json({
+        error: "Correo electronico o contraseña no validos2",
+      });
+    }
+
+    // Genera un token JWT
+    const token =jwt.sign(
+      {
+        usuario_id: usuario.id,
+        rol_id: usuario.rol_id,
+        email: usuario.email
+      },
+      "misterio",
+      {
+        expiresIn: "2h",
+      }
+    );
+    return res.status(200).json ({
+      message: "Inicio de sesión exitoso, Bienvenido.",
+      token,
+      usuario,
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocurrió un error durante el inicio de sesión",
+      error: error.message
+    });
+  }
+
+
+
+}
+
+
+
+
+
+
+
 module.exports = authController;

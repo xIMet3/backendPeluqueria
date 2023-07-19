@@ -23,7 +23,8 @@ app.use(cors());
 // Registro usuario
 app.post("/registro", authController.registerUsuario);
 
-
+// Login usuario
+app.post("/login", authController.loginUsuario);
 
 
 
