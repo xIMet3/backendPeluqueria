@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 
-// RUTAS
+// RUTAS USUARIO
 // Registro usuario
 app.post("/registro", authController.registerUsuario);
 
@@ -29,6 +29,9 @@ app.post("/login", authController.loginUsuario);
 
 // Buscar perfil de usuario
 app.get("/perfilUsuario", auth, usuarioController.getPerfil);
+
+// Modificar el perfil de usuario
+app.put("/modificarPerfil", auth, usuarioController.updatePerfil);
 
 
 
