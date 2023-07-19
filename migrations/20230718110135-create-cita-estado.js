@@ -9,13 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      concertada: {
-        type: Sequelize.STRING
-      },
-      anulada: {
-        type: Sequelize.STRING
-      },
-      realizada: {
+      nombre_cita_estado: {
         type: Sequelize.STRING
       },
       createdAt: {

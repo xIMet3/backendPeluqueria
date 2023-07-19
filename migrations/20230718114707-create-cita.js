@@ -13,12 +13,16 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: "Usuarios",
-          key: "id",
+          key: "id"
         },
 
       },
-      peluquero_id: {
-        type: Sequelize.INTEGER
+      empleado_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Empleados",
+          key: "id"
+        }
       },
       fecha: {
         type: Sequelize.DATE,
@@ -35,7 +39,7 @@ module.exports = {
           key: "id",
         },
       },
-      estado_cita: {
+      cita_estado_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "Cita_estados",

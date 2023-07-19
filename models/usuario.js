@@ -7,19 +7,13 @@ module.exports = (sequelize, DataTypes) => {
       //   foreignKey: "rol_id",
       // });
 
-      // Usuario.hasMany(models.Cita, {
-      //   foreignKey: "peluquero_id",
-      //   as: "peluquero",
-      // });
 
       // Usuario.hasMany(models.Cita, {
       //   foreignKey: "usuario_id",
-      //   as: "usuario",
       // });
 
       // Usuario.hasOne(models.Empleado, {
-      //   foreignKey: "usuario_id",
-      //   as: "peluquero",
+      //   foreignKey: "empleado_id",
       // });
     }
   }

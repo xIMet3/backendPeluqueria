@@ -8,15 +8,15 @@ module.exports = {
       [
         {
           id: 1,
-          name: "Admin",
+          nombre_rol: "Admin",
         },
         {
           id: 2,
-          name: "Peluquero",
+          nombre_rol: "Peluquero",
         },
         {
           id: 3,
-          name: "Cliente",
+          nombre_rol: "Cliente",
         },
       ],
       {}
