@@ -111,5 +111,31 @@ citaController.modificarCita = async (req, res) => {
   }
 };
 
+// Eliminar una cita
+citaController.cancelarCita = async (req, res) => {
+  try {
+    const citaId = req.params.id;
+    
+    const cancelacionCita = await Cita.destroy(
+      {
+        where: {
+          id: citaId
+        }
+      }
+    );
+    return res.json({
+      succes: true,
+      message: "La cita ha sido cancelada",
+      data: cancelacionCita
+    });
+  } catch (error) {
+    return res.status(500).json({
+      succes: false,
+      message: "La cita no pudo ser cancelada",
+      error: error,
+    });
+  }
+};
+
 
 module.exports = citaController;

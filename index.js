@@ -45,5 +45,8 @@ app.get("/misCitas", auth, citaController.verMisCitas);
 // Modificar una cita
 app.put("/modificarCita/:id", auth, citaController.modificarCita);
 
+// Eliminar una cita
+app.delete("/cancelarCita/:id", auth, citaController.cancelarCita);
+
 
 
