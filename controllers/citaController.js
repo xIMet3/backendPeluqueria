@@ -8,7 +8,6 @@ citaController.pedirCita = async (req, res) => {
     const { empleado_id, fecha, servicio_id, comentario } = req.body;
     const { usuarioId: usuario_id } = req;
     const { rolId, usuarioId } = req;
-    
 
     if (rolId === 3 && usuario_id != usuarioId) {
       return res.json({
@@ -24,15 +23,13 @@ citaController.pedirCita = async (req, res) => {
       });
     }
 
-    const nuevaCita = await Cita.create(
-        {
-            usuario_id: usuarioId,
-            empleado_id: empleado_id,
-            servicio_id: servicio_id,
-            fecha: fecha,
-            comentario: comentario,
-        }
-    );
+    const nuevaCita = await Cita.create({
+      usuario_id: usuarioId,
+      empleado_id: empleado_id,
+      servicio_id: servicio_id,
+      fecha: fecha,
+      comentario: comentario,
+    });
 
     return res.json({
       succes: true,
@@ -48,4 +45,28 @@ citaController.pedirCita = async (req, res) => {
   }
 };
 
+// Obtener mis citas
+citaController.verMisCitas = async (req, res) => {
+  try {
+    const { usuarioId } = req;
+
+    const misCitas = await Cita.findAll({
+      where: {
+        usuario_id: usuarioId,
+      },
+    });
+
+    return res.json({
+      succes: true,
+      message: "Citas encontradas",
+      data: misCitas,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      succes: false,
+      message: "No se encontraron citas",
+      error: error.message,
+    });
+  }
+};
 module.exports = citaController;

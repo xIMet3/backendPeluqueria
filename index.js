@@ -36,8 +36,11 @@ app.get("/perfilUsuario", auth, usuarioController.getPerfil);
 app.put("/modificarPerfil", auth, usuarioController.updatePerfil);
 
 // RUTAS CITAS
+// Pedir cita
 app.post("/solicitarCita", auth, citaController.pedirCita);
 
+// Ver mis citas
+app.get("/misCitas", auth, citaController.verMisCitas);
 
 
 
