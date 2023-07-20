@@ -69,4 +69,47 @@ citaController.verMisCitas = async (req, res) => {
     });
   }
 };
+
+citaController.modificarCita = async (req, res) => {
+  try{
+    const citaId = req.params.id;
+    const cita = await Cita.findByPk(citaId);
+
+    if (!cita) {
+      return res.json ({
+        succes: true,
+        message: "El id de la cita no existe"
+      });
+    }
+    const { empleado_id, fecha, servicio_id, comentario } = req.body;
+
+    const citaModificada = await Cita.update(
+      {
+        empleado_id: empleado_id,
+        fecha: fecha,
+        servicio_id: servicio_id,
+        comentario: comentario
+      },
+      {
+        where: {
+          id: citaId
+        },
+      }
+    );
+
+    return res.json({
+      succes: true,
+      message: "Cita actualizada",
+      data: cita
+    });
+  } catch (error) {
+    return res.status(500).json({
+      succes: false,
+      message: "No se pudo modificar la cita",
+      error: error
+    });
+  }
+};
+
+
 module.exports = citaController;

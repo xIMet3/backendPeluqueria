@@ -42,5 +42,8 @@ app.post("/solicitarCita", auth, citaController.pedirCita);
 // Ver mis citas
 app.get("/misCitas", auth, citaController.verMisCitas);
 
+// Modificar una cita
+app.put("/modificarCita/:id", auth, citaController.modificarCita);
+
 
 
