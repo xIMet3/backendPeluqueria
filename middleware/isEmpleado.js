@@ -1,20 +1,20 @@
-const isAdmin = async (req, res, next) => {
+const isEmpleado = async (req, res, next) => {
   try {
-    if (req.rol_id === 1) {
-      next();
-    } else {
+    const rolId = req.rolId;
+    if (req.rolId !== 1 && req.rolId !== 2) {
       return res.json({
         success: true,
         message: "No tienes los permisos necesarios",
       });
     }
+    next();
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Algo salio mal",
+      message: "Algo salió mal",
       error: error.message,
     });
   }
 };
 
-module.exports = isAdmin;
+module.exports = isEmpleado;

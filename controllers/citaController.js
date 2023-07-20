@@ -71,14 +71,14 @@ citaController.verMisCitas = async (req, res) => {
 };
 
 citaController.modificarCita = async (req, res) => {
-  try{
+  try {
     const citaId = req.params.id;
     const cita = await Cita.findByPk(citaId);
 
     if (!cita) {
-      return res.json ({
+      return res.json({
         succes: true,
-        message: "El id de la cita no existe"
+        message: "El id de la cita no existe",
       });
     }
     const { empleado_id, fecha, servicio_id, comentario } = req.body;
@@ -88,11 +88,11 @@ citaController.modificarCita = async (req, res) => {
         empleado_id: empleado_id,
         fecha: fecha,
         servicio_id: servicio_id,
-        comentario: comentario
+        comentario: comentario,
       },
       {
         where: {
-          id: citaId
+          id: citaId,
         },
       }
     );
@@ -100,13 +100,13 @@ citaController.modificarCita = async (req, res) => {
     return res.json({
       succes: true,
       message: "Cita actualizada",
-      data: cita
+      data: cita,
     });
   } catch (error) {
     return res.status(500).json({
       succes: false,
       message: "No se pudo modificar la cita",
-      error: error
+      error: error,
     });
   }
 };
@@ -115,18 +115,16 @@ citaController.modificarCita = async (req, res) => {
 citaController.cancelarCita = async (req, res) => {
   try {
     const citaId = req.params.id;
-    
-    const cancelacionCita = await Cita.destroy(
-      {
-        where: {
-          id: citaId
-        }
-      }
-    );
+
+    const cancelacionCita = await Cita.destroy({
+      where: {
+        id: citaId,
+      },
+    });
     return res.json({
       succes: true,
       message: "La cita ha sido cancelada",
-      data: cancelacionCita
+      data: cancelacionCita,
     });
   } catch (error) {
     return res.status(500).json({
@@ -136,6 +134,5 @@ citaController.cancelarCita = async (req, res) => {
     });
   }
 };
-
 
 module.exports = citaController;
