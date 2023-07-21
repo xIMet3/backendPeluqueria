@@ -33,9 +33,25 @@ adminController.todosLosUsuarios = async (req, res) => {
 adminController.eliminarUsuario = async (req, res) => {
     try {
         const usuarioId = req.params.id;
-        const borraUsuario = await Usuario.destroy(
+
+        const usuarioEliminado = await Usuario.findOne(
             {
                 where: {
+                    id: usuarioId
+                }
+            }
+        );
+        if (!usuarioEliminado){
+            return res.status(404).json(
+                {
+                    succes: false,
+                    message: "El usuario no existe"
+                }
+            );
+        }
+        const borraUsuario = await Usuario.destroy(
+            {
+                where:{
                     id: usuarioId
                 }
             }
@@ -44,10 +60,10 @@ adminController.eliminarUsuario = async (req, res) => {
             {
                 succes: true,
                 message: "El usuario ha sido eliminado",
-                data: borraUsuario
+                data: { borraUsuario, usuarioEliminado }
             }
         );
-    }   catch (error) {
+    }   catch (error){
         return res.status(500).json(
             {
                 succes: false,
@@ -57,6 +73,4 @@ adminController.eliminarUsuario = async (req, res) => {
         );
     }
 };
-
-
 module.exports = adminController;
