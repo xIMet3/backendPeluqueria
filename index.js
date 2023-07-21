@@ -48,4 +48,4 @@ app.delete("/cancelarCita/:id", auth, citaController.cancelarCita);
 app.get("/todasLasCitas", auth, isEmpleado, empleadoController.todasLasCitas);
 // Modificar una cita
 app.put("/modificarCita/:id", auth, isEmpleado, empleadoController.modificarCita);
-
+// Cancelar una cita

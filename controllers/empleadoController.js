@@ -7,17 +7,21 @@ empleadoController.todasLasCitas = async (req, res) => {
   try {
     const citas = await Cita.findAll({});
 
-    return res.json({
-      succes: true,
-      message: "Estas son todas las citas pendientes",
-      data: citas,
-    });
+    return res.json(
+        {
+            succes: true,
+            message: "Estas son todas las citas pendientes",
+            data: citas,
+        }
+    );
   } catch (error) {
-    return res.status(500).json({
-      succes: false,
-      message: "No se encontraron citas pendientes",
-      error: error,
-    });
+    return res.status(500).json(
+        {
+        succes: false,
+        message: "No se encontraron citas pendientes",
+        error: error,
+        }
+    );
   }
 };
 // Modificar cualquier cita
@@ -28,37 +32,83 @@ empleadoController.modificarCita = async (req, res) => {
     const citas = await Cita.findByPk(citaId);
 
     if (!citas) {
-      return res.json({
-        succes: true,
-        message: "El id de la cita no existe",
-      });
+      return res.json(
+        {
+            succes: true,
+            message: "El id de la cita no existe",
+        }
+      );
     }
     const { empleado_id, fecha, servicio_id, comentario } = req.body;
 
-    const citaModificada = await Cita.update({
-      empleado_id: empleado_id,
-      fecha: fecha,
-      servicio_id: servicio_id,
-      comentario: comentario,
-    },
-    {
-        where: {
-            id: citaId
+    const citaModificada = await Cita.update(
+        {
+        empleado_id: empleado_id,
+        fecha: fecha,
+        servicio_id: servicio_id,
+        comentario: comentario,
+        },
+        {
+            where: {
+                id: citaId
+            }
         }
-    });
-
-    return res.json({
-      succes: true,
-      message: "Cita actualizada",
-      data:  citas
-    });
+    );
+    if(citaModificada[0]=== 1){
+        const citaActualizada = await Cita.findByPk(citaId);
+        return res.json(
+            {
+                succes: true,
+                message: "Cita actualizada",
+                data: citaActualizada
+            }
+        );
+    } else {
+        return res.json(
+            {
+                succes: true,
+                message: "Cita actualizada",
+                data:  citaModificada
+            }
+        );
+       }
   } catch (error) {
-    return res.status(500).json({
-      succes: false,
-      message: "No se pudo modificar la cita",
-      error: error,
-    });
+    return res.status(500).json(
+        {
+            succes: false,
+            message: "No se pudo modificar la cita",
+            error: error,
+        }
+    );
   }
 };
-
+// Cancelar una cita
+empleadoController.empleadoCancelaCitas = async (req, res) => {
+    try {
+        const citaId = req.params.id;
+        const cancelaCitas = await Cita.destroy(
+            {
+                where: {
+                    id: citaId
+                }
+            }
+        );
+        
+        return res.json(
+            {
+                succes: true,
+                message: "Cita cancelada",
+                data: cancelaCitas
+            }
+        )
+    }   catch (error) {
+        return res.status(500).json(
+            {
+                succes: false,
+                message: "La cita no pudo ser cancelada",
+                error: error
+            }
+        );
+    }
+};
 module.exports = empleadoController;
