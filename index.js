@@ -53,5 +53,7 @@ app.put("/modificarCita/:id", auth, isEmpleado, empleadoController.modificarCita
 app.delete("/cancelarCita/:id", isEmpleado, empleadoController.empleadoCancelaCitas);
 
 // RUTAS ADMIN
-//Ruta para mostrar todos los usuarios
+// Ruta para mostrar todos los usuarios
 app.get("/todosLosUsuarios", auth, isAdmin, adminController.todosLosUsuarios);
+// Ruta para eliminar un usuario
+app.delete("/eliminarUsuario/:id", auth, isAdmin, adminController.eliminarUsuario);
