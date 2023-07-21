@@ -9,6 +9,7 @@ const usuarioController = require("./controllers/usuarioController");
 const citaController = require("./controllers/citaController");
 const isEmpleado = require("./middleware/isEmpleado");
 const empleadoController = require("./controllers/empleadoController");
+const adminController = require("./controllers/adminController");
 
 
 
@@ -50,3 +51,7 @@ app.get("/todasLasCitas", auth, isEmpleado, empleadoController.todasLasCitas);
 app.put("/modificarCita/:id", auth, isEmpleado, empleadoController.modificarCita);
 // Cancelar una cita
 app.delete("/cancelarCita/:id", isEmpleado, empleadoController.empleadoCancelaCitas);
+
+// RUTAS ADMIN
+//Ruta para mostrar todos los usuarios
+app.get("/todosLosUsuarios", auth, isAdmin, adminController.todosLosUsuarios);

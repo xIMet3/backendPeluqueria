@@ -1,6 +1,6 @@
 const isAdmin = async (req, res, next) => {
   try {
-    if (req.rol_id === 1) {
+    if (req.rolId === 1) {
       next();
     } else {
       return res.json({
