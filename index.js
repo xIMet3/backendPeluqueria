@@ -40,12 +40,12 @@ app.put("/modificarPerfil", auth, usuarioController.updatePerfil);
 app.post("/solicitarCita", auth, citaController.pedirCita);
 // Ver mis citas
 app.get("/misCitas", auth, citaController.verMisCitas);
-// Modificar una cita
-app.put("/modificarCita/:id", auth, citaController.modificarCita);
 // Eliminar una cita
 app.delete("/cancelarCita/:id", auth, citaController.cancelarCita);
 
 // RUTAS EMPLEADO
 // Ruta para ver todos los usuarios registrados como empleado
 app.get("/todasLasCitas", auth, isEmpleado, empleadoController.todasLasCitas);
+// Modificar una cita
+app.put("/modificarCita/:id", auth, isEmpleado, empleadoController.modificarCita);
 
