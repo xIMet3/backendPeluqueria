@@ -1,17 +1,17 @@
-const cors = require("cors");
 const express = require("express");
 const db = require("./db");
+const cors = require("cors");
 const app = express();
+const router = require("./router");
 
 app.use(express.json());
 app.use(cors());
-// app.use(router);
+app.use(router);
 
 
 
 const auth = require("./middleware/verifyToken");
 const isAdmin = require("./middleware/isAdmin");
-const authController = require("./controllers/authController");
 const usuarioController = require("./controllers/usuarioController");
 const citaController = require("./controllers/citaController");
 const isEmpleado = require("./middleware/isEmpleado");
@@ -29,11 +29,11 @@ app.listen(PORT, () => {
 
 
 
-// RUTAS AUTHCONTROLLER
-// Registro usuario
-app.post("/registro", authController.registerUsuario);
-// Login usuario
-app.post("/login", authController.loginUsuario);
+// // RUTAS AUTHCONTROLLER
+// // Registro usuario
+// app.post("/registro", authController.registerUsuario);
+// // Login usuario
+// app.post("/login", authController.loginUsuario);
 
 // RUTAS USUARIO
 // Buscar perfil de usuario
