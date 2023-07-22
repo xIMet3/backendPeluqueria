@@ -1,4 +1,4 @@
-const { Cita, Cita_estado } = require("../models");
+const { Cita, Cita_estado, Usuario, Empleado } = require("../models");
 
 const citaController = {};
 
@@ -61,7 +61,17 @@ citaController.verMisCitas = async (req, res) => {
       where: {
         usuario_id: usuarioId,
       },
-      include: [Cita_estado],
+      include: [
+        {
+          model: Usuario,
+          attributes: ['nombre'],
+        },
+        {
+          model: Empleado,
+          attributes: ['nombre'],
+        },
+        Cita_estado
+      ],
       attributes: [
         'id', 
         'usuario_id', 

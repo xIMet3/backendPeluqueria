@@ -43,7 +43,7 @@ module.exports = {
         },
       },
       cita_estado_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
           model: "Cita_estados",
           key: "id",

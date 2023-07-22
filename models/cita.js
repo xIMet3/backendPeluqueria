@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
        Cita.belongsTo(models.Cita_estado, {
          foreignKey: "cita_estado_id"
        });
+
+       Cita.belongsTo(models.Empleado, {
+        foreignKey: "empleado_id"
+       });
      }
   }
   Cita.init({
@@ -25,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     fecha: DataTypes.DATE,
     comentario: DataTypes.STRING,
     servicio_id: DataTypes.INTEGER,
-    cita_estado_id: DataTypes.STRING
+    cita_estado_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Cita',

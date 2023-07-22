@@ -7,6 +7,7 @@ module.exports = {
       {
         id: 1,
         usuario_id: 2,
+        nombre: "Cristian Johnson",
         estado: true
       }
     ],{}

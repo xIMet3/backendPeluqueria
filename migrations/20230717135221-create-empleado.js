@@ -14,11 +14,10 @@ module.exports = {
         references: {
           model: "Usuarios",
           key: "id",
-          // where: {
-          //   role_id: 2,
-          // },
         },
-
+      },
+      nombre: {
+        type: Sequelize.STRING,
       },
       estado: {
         type: Sequelize.BOOLEAN

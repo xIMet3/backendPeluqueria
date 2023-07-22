@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Empleado.init({
     usuario_id: DataTypes.INTEGER,
-    estado: DataTypes.BOOLEAN
+    estado: DataTypes.BOOLEAN,
+    nombre: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Empleado',
