@@ -12,7 +12,6 @@ app.use(router);
 
 const auth = require("./middleware/verifyToken");
 const isAdmin = require("./middleware/isAdmin");
-const usuarioController = require("./controllers/usuarioController");
 const citaController = require("./controllers/citaController");
 const isEmpleado = require("./middleware/isEmpleado");
 const empleadoController = require("./controllers/empleadoController");
@@ -27,19 +26,6 @@ app.listen(PORT, () => {
 });
 }). catch((error) => console.error(error.message));
 
-
-
-// // RUTAS AUTHCONTROLLER
-// // Registro usuario
-// app.post("/registro", authController.registerUsuario);
-// // Login usuario
-// app.post("/login", authController.loginUsuario);
-
-// RUTAS USUARIO
-// Buscar perfil de usuario
-app.get("/perfilUsuario", auth, usuarioController.getPerfil);
-// Modificar el perfil de usuario
-app.put("/modificarPerfil", auth, usuarioController.updatePerfil);
 
 // RUTAS CITAS
 // Pedir cita

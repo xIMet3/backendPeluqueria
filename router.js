@@ -8,7 +8,7 @@ const adminRoutes = require("./views/adminRoutes");
 
 // Ahora la ruta sera "localhost:3000/auth/ruta endpoint"
 router.use("/auth", authRoutes);
-// router.use("/usuario", usuarioRoutes);
+router.use("/usuario", usuarioRoutes);
 // router.use("/cita", citaRoutes);
 // router.use("/empleado", empleadoRoutes);
 // router.use("/admin", adminRoutes);
