@@ -11,6 +11,6 @@ router.use("/auth", authRoutes);
 router.use("/usuario", usuarioRoutes);
 router.use("/cita", citaRoutes);
 router.use("/empleado", empleadoRoutes);
-// router.use("/admin", adminRoutes);
+router.use("/admin", adminRoutes);
 
 module.exports = router;
