@@ -6,7 +6,7 @@ const citaRoutes = require("./views/citaRoutes");
 const empleadoRoutes = require("./views/empleadoRoutes");
 const adminRoutes = require("./views/adminRoutes");
 
-// Ahora la ruta sera "localhost:3000/auth/ruta endpoint"
+// Prefijos de las rutas.
 router.use("/auth", authRoutes);
 router.use("/usuario", usuarioRoutes);
 router.use("/cita", citaRoutes);
