@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class Servicio extends Model {
     
     static associate(models) {
-      Servicio.belongsTo(models.Cita, {
-        foreignKey: "cita_id",
+      Servicio.hasMany(models.Cita, {
+        foreignKey: "servicio_id",
       });
     }
   }

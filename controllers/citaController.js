@@ -1,4 +1,4 @@
-const { Cita, Cita_estado, Usuario, Empleado } = require("../models");
+const { Cita, Cita_estado, Usuario, Empleado, Servicio } = require("../models");
 
 const citaController = {};
 
@@ -70,7 +70,14 @@ citaController.verMisCitas = async (req, res) => {
           model: Empleado,
           attributes: ['nombre'],
         },
-        Cita_estado
+        {
+          model: Servicio,
+          attributes: ['nombre_servicio', 'precio_servicio', 'descripcion'],
+        },
+        {
+          model: Cita_estado,
+          attributes : ['nombre_cita_estado']
+        }
       ],
       attributes: [
         'id', 
@@ -79,9 +86,7 @@ citaController.verMisCitas = async (req, res) => {
         'fecha',
         'comentario',
         'servicio_id', 
-        ['cita_estado_id', 
-        'nombre_cita_estado'
-        ]
+        'cita_estado_id'
     ],
     });
 
