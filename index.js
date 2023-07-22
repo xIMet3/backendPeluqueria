@@ -1,7 +1,14 @@
+const cors = require("cors");
 const express = require("express");
 const db = require("./db");
-const cors = require("cors");
 const app = express();
+
+app.use(express.json());
+app.use(cors());
+// app.use(router);
+
+
+
 const auth = require("./middleware/verifyToken");
 const isAdmin = require("./middleware/isAdmin");
 const authController = require("./controllers/authController");
@@ -18,10 +25,8 @@ db.then(() => {
 app.listen(PORT, () => {
   console.log("Servidor levantado en el puerto " + PORT);
 });
-})
+}). catch((error) => console.error(error.message));
 
-app.use(express.json());
-app.use(cors());
 
 
 // RUTAS AUTHCONTROLLER
