@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Cita_estado',
+    timestamps: false,
   });
   return Cita_estado;
   

@@ -1,4 +1,4 @@
-const { Cita } = require("../models");
+const { Cita, Cita_estado } = require("../models");
 
 const citaController = {};
 
@@ -22,26 +22,33 @@ citaController.pedirCita = async (req, res) => {
         message: "Debes identificarte como cliente",
       });
     }
+    const estadoCita = await Cita_estado.findByPk(1);
+    const nuevaCita = await Cita.create(
+      {
+        usuario_id: usuarioId,
+        empleado_id: empleado_id,
+        servicio_id: servicio_id,
+        fecha: fecha,
+        comentario: comentario,
+        cita_estado_id: estadoCita.id
+      }
+    );
 
-    const nuevaCita = await Cita.create({
-      usuario_id: usuarioId,
-      empleado_id: empleado_id,
-      servicio_id: servicio_id,
-      fecha: fecha,
-      comentario: comentario,
-    });
-
-    return res.json({
-      succes: true,
-      message: "Cita reservada con éxito",
-      data: nuevaCita,
-    });
+    return res.json(
+      {
+        succes: true,
+        message: "Cita reservada con éxito",
+        data: nuevaCita,
+      }
+    );
   } catch (error) {
-    return res.status(500).json({
-      succes: false,
-      message: "No se pudo reservar la cita",
-      error: error,
-    });
+      return res.status(500).json(
+        {
+          message: "No se pudo reservar la cita",
+          error: error,
+          succes: false,
+        }
+      );
   }
 };
 
@@ -54,6 +61,18 @@ citaController.verMisCitas = async (req, res) => {
       where: {
         usuario_id: usuarioId,
       },
+      include: [Cita_estado],
+      attributes: [
+        'id', 
+        'usuario_id', 
+        'empleado_id',
+        'fecha',
+        'comentario',
+        'servicio_id', 
+        ['cita_estado_id', 
+        'nombre_cita_estado'
+        ]
+    ],
     });
 
     return res.json({
