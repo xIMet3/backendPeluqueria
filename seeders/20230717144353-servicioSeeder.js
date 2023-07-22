@@ -72,6 +72,12 @@ module.exports = {
           precio_servicio: "10€",
           descripcion: "Tinte de la barba a color natural."
       },
+      {
+        id: 12,
+          nombre_servicio: "Fade (degradado cabello)",
+          precio_servicio: "10€",
+          descripcion: "Degradado del cabello sin corte."
+      }
     ]
    )
   },
