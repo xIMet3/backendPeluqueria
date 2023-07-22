@@ -12,7 +12,7 @@ app.use(router);
 
 const auth = require("./middleware/verifyToken");
 const isAdmin = require("./middleware/isAdmin");
-const citaController = require("./controllers/citaController");
+// const citaController = require("./controllers/citaController");
 const isEmpleado = require("./middleware/isEmpleado");
 const empleadoController = require("./controllers/empleadoController");
 const adminController = require("./controllers/adminController");
@@ -27,13 +27,13 @@ app.listen(PORT, () => {
 }). catch((error) => console.error(error.message));
 
 
-// RUTAS CITAS
-// Pedir cita
-app.post("/solicitarCita", auth, citaController.pedirCita);
-// Ver mis citas
-app.get("/misCitas", auth, citaController.verMisCitas);
-// Eliminar una cita
-app.delete("/cancelarCita/:id", auth, citaController.cancelarCita);
+// // RUTAS CITAS
+// // Pedir cita
+// app.post("/solicitarCita", auth, citaController.pedirCita);
+// // Ver mis citas
+// app.get("/misCitas", auth, citaController.verMisCitas);
+// // Eliminar una cita
+// app.delete("/cancelarCita/:id", auth, citaController.cancelarCita);
 
 // RUTAS EMPLEADO
 // Ruta para ver todos los usuarios registrados como empleado
