@@ -10,7 +10,7 @@ const adminRoutes = require("./views/adminRoutes");
 router.use("/auth", authRoutes);
 router.use("/usuario", usuarioRoutes);
 router.use("/cita", citaRoutes);
-// router.use("/empleado", empleadoRoutes);
+router.use("/empleado", empleadoRoutes);
 // router.use("/admin", adminRoutes);
 
 module.exports = router;
