@@ -1,11 +1,41 @@
-const { Cita } = require("../models");
+const { Cita, Cita_estado, Usuario, Empleado, Servicio } = require("../models");
 
 const empleadoController = {};
 
 // Ver todas las citas pendientes como empleado
 empleadoController.todasLasCitas = async (req, res) => {
   try {
-    const citas = await Cita.findAll({});
+    const citas = await Cita.findAll(
+        {
+            include: [
+                {
+                    model: Usuario,
+                    attributes: ['nombre']
+                },
+                {
+                    model: Empleado,
+                    attributes: ['nombre']
+                },
+                {
+                    model: Servicio,
+                    attributes: ['nombre_servicio', 'precio_servicio', 'descripcion']
+                },
+                {
+                    model: Cita_estado,
+                    attributes: ['nombre_cita_estado']
+                }
+            ],
+            attributes: [
+                'id',
+                'usuario_id',
+                'empleado_id',
+                'fecha',
+                'comentario',
+                'servicio_id',
+                'cita_estado_id'
+            ],
+        }
+    );
 
     return res.json(
         {
