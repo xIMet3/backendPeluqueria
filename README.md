@@ -116,6 +116,10 @@ Y lo pegas aquí:
     **/empleado/cancelarCita/4 <=(ID)**
     {}
 
+    - **Filtrar citas por nombre usuario**
+    **/empleado/citasPorUsuario/Roberto <=(Nombre Usuario)**
+    {}
+
 - **Admin(como admin)**
     - **Ver todos los usuarios:**
     **/admin/todosLosUsuarios**
