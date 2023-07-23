@@ -93,13 +93,13 @@ empleadoController.citasPorUsuario = async (req, res) => {
   
       return res.json({
         succes: true,
-        message: "Citas filtradas por nombre de usuario",
+        message: `Citas filtradas de ${nombre_usuario}`,
         data: citas,
       });
     } catch (error) {
       return res.status(500).json({
         succes: false,
-        message: "No se pudieron obtener las citas por nombre de usuario",
+        message: `No se obtuvieron citas de ${nombre_usuario}`,
         error: error,
       });
     }
