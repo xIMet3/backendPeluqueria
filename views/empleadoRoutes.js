@@ -9,5 +9,7 @@ router.get("/todasLasCitas", auth, isEmpleado, empleadoController.todasLasCitas)
 router.put("/modificarCita/:id", auth, isEmpleado, empleadoController.modificarCita);
 // Ruta para eliminar una cita por su ID si estas logeado como Empleado.
 router.delete("/cancelarCita/:id", auth, isEmpleado, empleadoController.empleadoCancelaCitas);
+// Ruta para ver todas las citas de un usuario filtrado por nombre
+router.get("/citasPorUsuario/:nombre_usuario", auth, isEmpleado, empleadoController.citasPorUsuario);
 
 module.exports = router;

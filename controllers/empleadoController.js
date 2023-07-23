@@ -54,6 +54,58 @@ empleadoController.todasLasCitas = async (req, res) => {
     );
   }
 };
+
+// Ver todas las citas de un usuario filtrado por nombre
+empleadoController.citasPorUsuario = async (req, res) => {
+    try {
+      const { nombre_usuario } = req.params;
+  
+      const citas = await Cita.findAll({
+        include: [
+          {
+            model: Usuario,
+            attributes: ['nombre'],
+            where: { nombre: nombre_usuario },
+          },
+          {
+            model: Empleado,
+            attributes: ['nombre']
+          },
+          {
+            model: Servicio,
+            attributes: ['nombre_servicio', 'precio_servicio', 'descripcion']
+          },
+          {
+            model: Cita_estado,
+            attributes: ['nombre_cita_estado']
+          }
+        ],
+        attributes: [
+          'id',
+          'usuario_id',
+          'empleado_id',
+          'fecha',
+          'comentario',
+          'servicio_id',
+          'cita_estado_id'
+        ],
+      });
+  
+      return res.json({
+        succes: true,
+        message: "Citas filtradas por nombre de usuario",
+        data: citas,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        succes: false,
+        message: "No se pudieron obtener las citas por nombre de usuario",
+        error: error,
+      });
+    }
+  };
+  
+
 // Modificar cualquier cita
 empleadoController.modificarCita = async (req, res) => {
   try {
