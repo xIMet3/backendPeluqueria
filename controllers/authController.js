@@ -17,7 +17,7 @@ authController.registerUsuario = async (req, res) => {
 
     if (telefono.length != 9) {
       return res.status(400).json({
-        error: "Porfavor, introduce un número de telefono válido (9 digitos)",
+        error: "Porfavor, introduce un número de teléfono válido (9 digitos)",
       });
     }
 

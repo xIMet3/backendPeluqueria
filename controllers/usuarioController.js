@@ -53,6 +53,9 @@ usuarioController.updatePerfil = async (req, res) => {
     // Parametros que se pueden modificar
     const { nombre, apellido, email, telefono, codigo_postal, contraseña } =
       req.body;
+
+    const encriptaContraseña = await bcrypt.hash(contraseña, 6);
+
     // Recibe el perfil actualizado como respuesta
     const perfilActualizado = await usuario.update(
       {
@@ -61,7 +64,7 @@ usuarioController.updatePerfil = async (req, res) => {
         email: email,
         telefono: telefono,
         codigo_postal: codigo_postal,
-        contraseña: contraseña,
+        contraseña: encriptaContraseña,
       },
       {
         where: {
