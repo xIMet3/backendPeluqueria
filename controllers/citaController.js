@@ -11,14 +11,14 @@ citaController.pedirCita = async (req, res) => {
 
     if (rolId === 3 && usuario_id != usuarioId) {
       return res.json({
-        succes: false,
+        success: false,
         message: "Solo puedes crear tus propias citas",
       });
     }
 
     if (rolId === 2 && !usuario_id) {
       return res.json({
-        succes: false,
+        success: false,
         message: "Debes identificarte como cliente",
       });
     }
@@ -36,7 +36,7 @@ citaController.pedirCita = async (req, res) => {
 
     return res.json(
       {
-        succes: true,
+        success: true,
         message: "Cita reservada con éxito",
         data: nuevaCita,
       }
@@ -46,7 +46,7 @@ citaController.pedirCita = async (req, res) => {
         {
           message: "No se pudo reservar la cita",
           error: error,
-          succes: false,
+          success: false,
         }
       );
   }
@@ -97,7 +97,7 @@ citaController.verMisCitas = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      succes: false,
+      success: false,
       message: "No se encontraron citas",
       error: error.message,
     });
@@ -115,13 +115,13 @@ citaController.cancelarCita = async (req, res) => {
       },
     });
     return res.json({
-      succes: true,
+      success: true,
       message: "La cita ha sido cancelada",
       data: cancelacionCita,
     });
   } catch (error) {
     return res.status(500).json({
-      succes: false,
+      success: false,
       message: "La cita no pudo ser cancelada",
       error: error,
     });
