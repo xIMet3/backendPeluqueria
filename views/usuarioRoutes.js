@@ -11,4 +11,4 @@ router.get("/verEmpleados", usuarioController.verEmpleados);
 // Ruta para mostrar todos los servicios
 router.get("/verServicios", usuarioController.verServicios);
 
-module.exports = router;
+module.exports = router; 
