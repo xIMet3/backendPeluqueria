@@ -8,5 +8,7 @@ router.get("/perfilUsuario", auth, usuarioController.getPerfil);
 router.put("/modificarPerfil", auth, usuarioController.updatePerfil);
 // Ruta para mostrar todos los empleados.
 router.get("/verEmpleados", auth, usuarioController.verEmpleados);
+// Ruta para mostrar todos los servicios
+router.get("/verServicios", auth, usuarioController.verServicios);
 
 module.exports = router;

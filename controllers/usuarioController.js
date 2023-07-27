@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { Usuario, Empleado } = require("../models");
+const { Usuario, Empleado, Servicio } = require("../models");
 
 const usuarioController = {};
 
@@ -114,6 +114,33 @@ usuarioController.verEmpleados = async (req, res) => {
   }
 };
 
-
-
+usuarioController.verServicios = async (req, res) => {
+  try {
+    const servicios = await Servicio.findAll(
+      {
+        attributes: [
+          'id',
+          'nombre_servicio',
+          'precio_servicio',
+          'descripcion'
+        ],
+      }
+    );
+    return res.json(
+      {
+        success: true,
+        message: "Servicios encontrados",
+        data: servicios
+      }
+    );
+  } catch (error) {
+    return res.status(500).json(
+      {
+        success: false,
+        message: "No se encontraron servicios",
+        error: error.message
+      }
+    );
+  }
+};
 module.exports = usuarioController;
