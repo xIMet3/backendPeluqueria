@@ -6,5 +6,7 @@ const auth = require("../middleware/verifyToken");
 router.get("/perfilUsuario", auth, usuarioController.getPerfil);
 // Ruta para modificar el perfil del usuario que esta logeado.
 router.put("/modificarPerfil", auth, usuarioController.updatePerfil);
+// Ruta para mostrar todos los empleados.
+router.get("/verEmpleados", auth, usuarioController.verEmpleados);
 
 module.exports = router;

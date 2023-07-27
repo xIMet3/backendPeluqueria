@@ -91,7 +91,7 @@ citaController.verMisCitas = async (req, res) => {
     });
 
     return res.json({
-      succes: true,
+      success: true,
       message: "Citas encontradas",
       data: misCitas,
     });

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { Usuario } = require("../models");
+const { Usuario, Empleado } = require("../models");
 
 const usuarioController = {};
 
@@ -85,4 +85,35 @@ usuarioController.updatePerfil = async (req, res) => {
     });
   }
 };
+
+usuarioController.verEmpleados = async (req, res) => {
+  try {
+    const empleados = await Empleado.findAll(
+      {
+        attributes: [
+          'id',
+          'nombre'
+        ],
+      }
+    );
+    return res.json(
+      {
+        success: true,
+        message: "Empleados encontrados",
+        data: empleados
+      }
+    );
+  } catch (error) {
+    return res.status(500).json(
+      {
+        success: false,
+        message: "No se encontraron empleados",
+        error: error.message
+      }
+    );
+  }
+};
+
+
+
 module.exports = usuarioController;
