@@ -10,7 +10,7 @@ empleadoController.todasLasCitas = async (req, res) => {
             include: [
                 {
                     model: Usuario,
-                    attributes: ['nombre']
+                    attributes: ['nombre', 'apellido', 'telefono']
                 },
                 {
                     model: Empleado,
