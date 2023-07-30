@@ -85,7 +85,7 @@ usuarioController.updatePerfil = async (req, res) => {
     });
   }
 };
-
+// Ver los empleados
 usuarioController.verEmpleados = async (req, res) => {
   try {
     const empleados = await Empleado.findAll(
@@ -113,7 +113,7 @@ usuarioController.verEmpleados = async (req, res) => {
     );
   }
 };
-
+// Ver los servicios
 usuarioController.verServicios = async (req, res) => {
   try {
     const servicios = await Servicio.findAll(

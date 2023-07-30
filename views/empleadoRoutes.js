@@ -11,5 +11,8 @@ router.put("/modificarCita/:id", auth, isEmpleado, empleadoController.modificarC
 router.delete("/cancelarCita/:id", auth, isEmpleado, empleadoController.empleadoCancelaCitas);
 // Ruta para ver todas las citas de un usuario filtrado por nombre
 router.get("/citasPorUsuario/:nombre_usuario", auth, isEmpleado, empleadoController.citasPorUsuario);
+// Ruta para obtener los posibles estados de las citas
+router.get("/obtenerEstados", auth, isEmpleado, empleadoController.obtenerEstadosCita);
+
 
 module.exports = router;

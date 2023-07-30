@@ -127,5 +127,4 @@ citaController.cancelarCita = async (req, res) => {
     });
   }
 };
-
 module.exports = citaController;
