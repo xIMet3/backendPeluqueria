@@ -112,37 +112,46 @@ empleadoController.modificarCita = async (req, res) => {
         message: "El id de la cita no existe",
       });
     }
-    const { empleado_id, fecha, servicio_id, comentario, cita_estado_id } =
-      req.body;
 
-    const citaModificada = await Cita.update(
-      {
-        empleado_id: empleado_id,
-        fecha: fecha,
-        servicio_id: servicio_id,
-        comentario: comentario,
-        cita_estado_id: cita_estado_id,
-      },
-      {
-        where: {
-          id: citaId,
-        },
-      }
-    );
-    if (citaModificada[0] === 1) {
-      const citaActualizada = await Cita.findByPk(citaId);
-      return res.json({
-        succes: true,
-        message: "Cita actualizada",
-        data: citaActualizada,
-      });
-    } else {
-      return res.json({
-        succes: true,
-        message: "Cita actualizada",
-        data: citaModificada,
-      });
+    // Obtener los datos de la solicitud
+    const {
+      empleado_id,
+      fecha,
+      hora,
+      servicio_id,
+      comentario,
+      cita_estado_id,
+    } = req.body;
+
+    // Construir el objeto con los datos modificados
+    const nuevaCitaData = {
+      empleado_id: empleado_id || citas.empleado_id,
+      fecha: fecha || citas.fecha,
+      servicio_id: servicio_id || citas.servicio_id,
+      comentario: comentario || citas.comentario,
+      cita_estado_id: cita_estado_id || citas.cita_estado_id,
+    };
+
+    // Formatear la fecha y hora si están presentes en la solicitud
+    if (fecha && hora) {
+      const fechaHora = new Date(`${fecha}T${hora}`);
+      nuevaCitaData.fecha = fechaHora.toISOString();
     }
+
+    // Realizar la actualización de la cita
+    await Cita.update(nuevaCitaData, {
+      where: {
+        id: citaId,
+      },
+    });
+
+    const citaActualizada = await Cita.findByPk(citaId);
+
+    return res.json({
+      succes: true,
+      message: "Cita actualizada",
+      data: citaActualizada,
+    });
   } catch (error) {
     return res.status(500).json({
       succes: false,
@@ -151,6 +160,7 @@ empleadoController.modificarCita = async (req, res) => {
     });
   }
 };
+
 // Eliminar una cita
 empleadoController.empleadoCancelaCitas = async (req, res) => {
   try {
