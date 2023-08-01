@@ -36,13 +36,13 @@ empleadoController.todasLasCitas = async (req, res) => {
     });
 
     return res.json({
-      succes: true,
+      success: true,
       message: "Estas son todas las citas pendientes",
       data: citas,
     });
   } catch (error) {
     return res.status(500).json({
-      succes: false,
+      success: false,
       message: "No se encontraron citas pendientes",
       error: error,
     });
@@ -86,13 +86,13 @@ empleadoController.citasPorUsuario = async (req, res) => {
     });
 
     return res.json({
-      succes: true,
+      success: true,
       message: `Citas filtradas de ${nombre_usuario}`,
       data: citas,
     });
   } catch (error) {
     return res.status(500).json({
-      succes: false,
+      success: false,
       message: `No se obtuvieron citas de ${nombre_usuario}`,
       error: error,
     });
@@ -108,7 +108,7 @@ empleadoController.modificarCita = async (req, res) => {
 
     if (!citas) {
       return res.json({
-        succes: true,
+        success: true,
         message: "El id de la cita no existe",
       });
     }
@@ -148,13 +148,13 @@ empleadoController.modificarCita = async (req, res) => {
     const citaActualizada = await Cita.findByPk(citaId);
 
     return res.json({
-      succes: true,
+      success: true,
       message: "Cita actualizada",
       data: citaActualizada,
     });
   } catch (error) {
     return res.status(500).json({
-      succes: false,
+      success: false,
       message: "No se pudo modificar la cita",
       error: error,
     });
@@ -172,13 +172,13 @@ empleadoController.empleadoCancelaCitas = async (req, res) => {
     });
 
     return res.json({
-      succes: true,
+      success: true,
       message: "Cita cancelada",
       data: cancelaCitas,
     });
   } catch (error) {
     return res.status(500).json({
-      succes: false,
+      success: false,
       message: "La cita no pudo ser cancelada",
       error: error,
     });

@@ -100,6 +100,14 @@ Y lo pegas aquí:
     **/cita/cancelarCita/1 <=(ID)**
     {}
 
+    - **Ver empleados:**
+    **/usuario/verEmpleados**
+    {}
+
+    - **Ver servicios:**
+    **/usuario/verServicios**
+    {}
+
 - **Empleado(como empleado)**
     - **Ver todas las citas pendientes**
     **/empleado/todasLasCitas**
@@ -111,13 +119,19 @@ Y lo pegas aquí:
     "fecha": "2023-08-10T17:30:00",
     "servicio_id": 9,
     "comentario": "Quiero decolorarme el pelo color platino"
+    "cita_estado_id": 2
     }
+
     - **Cancelar citas por id:**
     **/empleado/cancelarCita/4 <=(ID)**
     {}
 
     - **Filtrar citas por nombre usuario**
     **/empleado/citasPorUsuario/Roberto <=(Nombre Usuario)**
+    {}
+
+    - **Obtener estados cita:**
+    **/empleado/obtenerEstados**
     {}
 
 - **Admin(como admin)**

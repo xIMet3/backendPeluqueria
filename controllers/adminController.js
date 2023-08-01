@@ -14,7 +14,7 @@ adminController.todosLosUsuarios = async (req, res) => {
         );
         return res.json(
             {
-                succes: true,
+                success: true,
                 message: "Usuarios encontrados",
                 data: usuarios
             }
@@ -22,7 +22,7 @@ adminController.todosLosUsuarios = async (req, res) => {
     }   catch (error) {
         return res.status(500).json(
             {
-                succes: false,
+                success: false,
                 message: "No se encontraron usuarios",
                 error: error
             }
@@ -44,7 +44,7 @@ adminController.eliminarUsuario = async (req, res) => {
         if (!usuarioEliminado){
             return res.status(404).json(
                 {
-                    succes: false,
+                    success: false,
                     message: "El usuario no existe"
                 }
             );
@@ -58,7 +58,7 @@ adminController.eliminarUsuario = async (req, res) => {
         );
         return res.json(
             {
-                succes: true,
+                success: true,
                 message: "El usuario ha sido eliminado",
                 data: { borraUsuario, usuarioEliminado }
             }
@@ -66,7 +66,7 @@ adminController.eliminarUsuario = async (req, res) => {
     }   catch (error){
         return res.status(500).json(
             {
-                succes: false,
+                success: false,
                 message: "El usuario no pudo ser eliminado",
                 error: error
             }

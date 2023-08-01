@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     
      static associate(models) {
       Cita.belongsTo(models.Usuario, {
-        foreignKey: "usuario_id"
+        foreignKey: "usuario_id",
+        onDelete: 'CASCADE'
       });
 
       Cita.belongsTo(models.Servicio, {

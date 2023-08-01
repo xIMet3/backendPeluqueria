@@ -78,6 +78,7 @@ authController.loginUsuario = async (req, res) => {
         usuarioId: usuario.id,
         rolId: usuario.rol_id,
         email: usuario.email,
+        nombre: usuario.nombre
       },
       "misterio",
       {
