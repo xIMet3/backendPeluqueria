@@ -41,7 +41,8 @@ authController.registerUsuario = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Error al crear usuario",
+      message:
+        "Error al crear usuario (ya hay un usuario registrado con ese email",
       error: error.message,
     });
   }
@@ -78,7 +79,7 @@ authController.loginUsuario = async (req, res) => {
         usuarioId: usuario.id,
         rolId: usuario.rol_id,
         email: usuario.email,
-        nombre: usuario.nombre
+        nombre: usuario.nombre,
       },
       "misterio",
       {

@@ -22,33 +22,28 @@ citaController.pedirCita = async (req, res) => {
         message: "Debes identificarte como cliente",
       });
     }
+    
     const estadoCita = await Cita_estado.findByPk(1);
-    const nuevaCita = await Cita.create(
-      {
-        usuario_id: usuarioId,
-        empleado_id: empleado_id,
-        servicio_id: servicio_id,
-        fecha: fecha,
-        comentario: comentario,
-        cita_estado_id: estadoCita.id
-      }
-    );
+    const nuevaCita = await Cita.create({
+      usuario_id: usuarioId,
+      empleado_id: empleado_id,
+      servicio_id: servicio_id,
+      fecha: fecha,
+      comentario: comentario,
+      cita_estado_id: estadoCita.id,
+    });
 
-    return res.json(
-      {
-        success: true,
-        message: "Cita reservada con éxito",
-        data: nuevaCita,
-      }
-    );
+    return res.json({
+      success: true,
+      message: "Cita reservada con éxito",
+      data: nuevaCita,
+    });
   } catch (error) {
-      return res.status(500).json(
-        {
-          message: "No se pudo reservar la cita",
-          error: error,
-          success: false,
-        }
-      );
+    return res.status(500).json({
+      message: "No se pudo reservar la cita",
+      error: error,
+      success: false,
+    });
   }
 };
 
@@ -64,30 +59,30 @@ citaController.verMisCitas = async (req, res) => {
       include: [
         {
           model: Usuario,
-          attributes: ['nombre'],
+          attributes: ["nombre"],
         },
         {
           model: Empleado,
-          attributes: ['nombre'],
+          attributes: ["nombre"],
         },
         {
           model: Servicio,
-          attributes: ['nombre_servicio', 'precio_servicio', 'descripcion'],
+          attributes: ["nombre_servicio", "precio_servicio", "descripcion"],
         },
         {
           model: Cita_estado,
-          attributes : ['nombre_cita_estado']
-        }
+          attributes: ["nombre_cita_estado"],
+        },
       ],
       attributes: [
-        'id', 
-        'usuario_id', 
-        'empleado_id',
-        'fecha',
-        'comentario',
-        'servicio_id', 
-        'cita_estado_id'
-    ],
+        "id",
+        "usuario_id",
+        "empleado_id",
+        "fecha",
+        "comentario",
+        "servicio_id",
+        "cita_estado_id",
+      ],
     });
 
     return res.json({
