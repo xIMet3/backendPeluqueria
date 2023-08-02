@@ -1,57 +1,76 @@
 const { Usuario } = require("../models");
-const citaController = require("./citaController");
 
 const adminController = {};
 
 // Ver todos los usuarios registrados
 adminController.todosLosUsuarios = async (req, res) => {
-  try {
-    const usuarios = await Usuario.findAll({
-      where: {
-        rol_id: [2, 3],
-      },
-    });
-    return res.json({
-      success: true,
-      message: "Usuarios encontrados",
-      data: usuarios,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "No se encontraron usuarios",
-      error: error,
-    });
-  }
+    try {
+        const usuarios = await Usuario.findAll(
+            {
+                where: {
+                    rol_id: [2, 3]
+                }
+            }
+        );
+        return res.json(
+            {
+                success: true,
+                message: "Usuarios encontrados",
+                data: usuarios
+            }
+        );
+    }   catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "No se encontraron usuarios",
+                error: error
+            }
+        );
+    }
 };
 
-// Eliminar un usuario y todas sus citas
-adminController.eliminarUsuarioConCitas = async (req, res) => {
-  try {
-    const usuarioId = req.params.id;
+adminController.eliminarUsuario = async (req, res) => {
+    try {
+        const usuarioId = req.params.id;
 
-    // Eliminar todas las citas asociadas al usuario primero
-    await citaController.eliminarCitasDeUsuario(usuarioId);
-
-    // Eliminar el usuario
-    const usuarioEliminado = await Usuario.destroy({
-      where: {
-        id: usuarioId,
-      },
-    });
-
-    return res.json({
-      success: true,
-      message: "El usuario y todas sus citas han sido eliminados",
-      data: usuarioEliminado,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "El usuario y sus citas no pudieron ser eliminados",
-      error: error,
-    });
-  }
+        const usuarioEliminado = await Usuario.findOne(
+            {
+                where: {
+                    id: usuarioId
+                }
+            }
+        );
+        if (!usuarioEliminado){
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "El usuario no existe"
+                }
+            );
+        }
+        const borraUsuario = await Usuario.destroy(
+            {
+                where:{
+                    id: usuarioId
+                }
+            }
+        );
+        return res.json(
+            {
+                success: true,
+                message: "El usuario ha sido eliminado",
+                data: { borraUsuario, usuarioEliminado }
+            }
+        );
+    }   catch (error){
+        return res.status(500).json(
+            {
+                success: false,
+                message: "El usuario no pudo ser eliminado",
+                error: error
+            }
+        );
+    }
 };
-
 module.exports = adminController;

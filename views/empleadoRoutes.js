@@ -8,7 +8,7 @@ router.get("/todasLasCitas", auth, empleadoController.todasLasCitas);
 // Ruta para modificar una cita por su ID si estas logeado como Empleado.
 router.put("/modificarCita/:id", auth, empleadoController.modificarCita);
 // Ruta para eliminar una cita por su ID si estas logeado como Empleado.
-router.delete("/cancelarCita/:id", auth, isEmpleado, empleadoController.empleadoEliminaCitas);
+router.delete("/cancelarCita/:id", auth, empleadoController.empleadoCancelaCitas);
 // Ruta para ver todas las citas de un usuario filtrado por nombre
 router.get("/citasPorUsuario/:nombre_usuario", auth, isEmpleado, empleadoController.citasPorUsuario);
 // Ruta para obtener los posibles estados de las citas
