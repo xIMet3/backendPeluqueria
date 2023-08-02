@@ -8,6 +8,10 @@ app.use(express.json());
 app.use(cors());
 app.use(router);
 
+app.get('/health', (req, res) => {
+  return res.send('healthy');
+});
+
 const PORT = 3000;
 db.then(() => {
 app.listen(PORT, () => {
