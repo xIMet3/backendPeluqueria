@@ -100,7 +100,7 @@ citaController.verMisCitas = async (req, res) => {
 };
 
 // Eliminar una cita
-citaController.cancelarCita = async (req, res) => {
+citaController.eliminarCita = async (req, res) => {
   try {
     const citaId = req.params.id;
 
