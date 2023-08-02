@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "backend_proyecto_final",
-    "host": "127.0.0.1",
+    "password": "fNwvpOkyYP2ZWau9uUI0",
+    "database": "railway",
+    "host": "containers-us-west-66.railway.app",
     "dialect": "mysql",
-    "port": 3307
+    "port": 7810
   },
   "test": {
     "username": "root",
