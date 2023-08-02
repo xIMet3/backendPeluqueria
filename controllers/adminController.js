@@ -1,4 +1,5 @@
 const { Usuario } = require("../models");
+const citaController = require("./citaController");
 
 const adminController = {};
 
@@ -24,56 +25,31 @@ adminController.todosLosUsuarios = async (req, res) => {
   }
 };
 
-adminController.eliminarUsuario = async (req, res) => {
+// Eliminar un usuario y todas sus citas
+adminController.eliminarUsuarioConCitas = async (req, res) => {
   try {
     const usuarioId = req.params.id;
 
-    const usuarioEliminado = await Usuario.findOne({
-      where: {
-        id: usuarioId,
-      },
-    });
-    if (!usuarioEliminado) {
-      return res.status(404).json({
-        success: false,
-        message: "El usuario no existe",
-      });
-    }
-    const borraUsuario = await Usuario.destroy({
-      where: {
-        id: usuarioId,
-      },
-    });
-    return res.json({
-      success: true,
-      message: "El usuario ha sido eliminado",
-      data: { borraUsuario, usuarioEliminado },
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "El usuario no pudo ser eliminado",
-      error: error,
-    });
-  }
-};
-
-adminController.eliminarCitasDeUsuario = async (req, res) => {
-  try {
-    const usuarioId = req.params.id;
-
-    // Eliminar todas las citas asociadas al usuario
+    // Eliminar todas las citas asociadas al usuario primero
     await citaController.eliminarCitasDeUsuario(usuarioId);
 
+    // Eliminar el usuario
+    const usuarioEliminado = await Usuario.destroy({
+      where: {
+        id: usuarioId,
+      },
+    });
+
     return res.json({
       success: true,
-      message: "Todas las citas del usuario han sido eliminadas",
+      message: "El usuario y todas sus citas han sido eliminados",
+      data: usuarioEliminado,
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Error al eliminar las citas del usuario",
-      error: error.message,
+      message: "El usuario y sus citas no pudieron ser eliminados",
+      error: error,
     });
   }
 };

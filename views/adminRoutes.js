@@ -9,5 +9,7 @@ router.get("/todosLosUsuarios", auth, isAdmin, adminController.todosLosUsuarios)
 router.delete("/eliminarUsuario/:id", auth, isAdmin, adminController.eliminarUsuario);
 // Ruta para eliminar las citas de un usuario
 router.delete("/eliminarCitasUsuario/id", auth, isAdmin, adminController.eliminarCitasDeUsuario);
+// Ruta para eliminar un usuario con todas sus citas
+router.delete("/eliminarCitasUsuario/id", auth, isAdmin, adminController.eliminarUsuarioConCitas);
 
 module.exports = router;
