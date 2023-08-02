@@ -162,7 +162,7 @@ empleadoController.modificarCita = async (req, res) => {
 };
 
 // Eliminar una cita
-empleadoController.empleadoEliminaCitas = async (req, res) => {
+empleadoController.empleadoCancelaCitas = async (req, res) => {
   try {
     const citaId = req.params.id;
     const cancelaCitas = await Cita.destroy({
@@ -173,13 +173,13 @@ empleadoController.empleadoEliminaCitas = async (req, res) => {
 
     return res.json({
       success: true,
-      message: "Cita eliminada",
+      message: "Cita cancelada",
       data: cancelaCitas,
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "La cita no pudo ser eliminada",
+      message: "La cita no pudo ser cancelada",
       error: error,
     });
   }
