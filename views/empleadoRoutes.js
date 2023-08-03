@@ -7,8 +7,8 @@ const empleadoController = require("../controllers/empleadoController");
 router.get("/todasLasCitas", auth, empleadoController.todasLasCitas);
 // Ruta para modificar una cita por su ID si estas logeado como Empleado.
 router.put("/modificarCita/:id", auth, empleadoController.modificarCita);
-// Ruta para eliminar una cita por su ID si estas logeado como Empleado.
-router.delete("/cancelarCita/:id", auth, isEmpleado, empleadoController.empleadoCancelaCitas);
+// Ruta para eliminar un usuario y sus citas asociadas por su ID si estás logeado como Empleado.
+router.delete("/eliminarUsuario/:id", auth, isEmpleado, empleadoController.eliminarUsuarioConCitas);
 // Ruta para ver todas las citas de un usuario filtrado por nombre
 router.get("/citasPorUsuario/:nombre_usuario", auth, isEmpleado, empleadoController.citasPorUsuario);
 // Ruta para obtener los posibles estados de las citas
