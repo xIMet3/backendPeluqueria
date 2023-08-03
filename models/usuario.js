@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Usuario.hasMany(models.Cita, {
         foreignKey: "usuario_id",
+        onDelete: 'CASCADE'
       });
 
       Usuario.hasOne(models.Empleado, {

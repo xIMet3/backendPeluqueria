@@ -161,33 +161,25 @@ empleadoController.modificarCita = async (req, res) => {
   }
 };
 
-// Eliminar un usuario y sus citas asociadas
-empleadoController.eliminarUsuarioConCitas = async (req, res) => {
+// Eliminar una cita
+empleadoController.empleadoEliminaCitas = async (req, res) => {
   try {
-    const usuarioId = req.params.id;
-
-    // Eliminar todas las citas del usuario
-    await Cita.destroy({
+    const citaId = req.params.id;
+    const cancelaCitas = await Cita.destroy({
       where: {
-        usuario_id: usuarioId,
-      },
-    });
-
-    // Eliminar al usuario
-    await Usuario.destroy({
-      where: {
-        id: usuarioId,
+        id: citaId,
       },
     });
 
     return res.json({
       success: true,
-      message: "Usuario y sus citas asociadas eliminadas con éxito",
+      message: "Cita cancelada",
+      data: cancelaCitas,
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Error al eliminar el usuario y sus citas asociadas",
+      message: "La cita no pudo ser cancelada",
       error: error,
     });
   }
